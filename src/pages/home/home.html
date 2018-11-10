@@ -1,18 +1,54 @@
-<ion-header>
+<!-- <ion-header>
   <ion-navbar>
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title>Wash machine App!</ion-title>
+  </ion-navbar>
+</ion-header> -->
+<ion-header>
+  <ion-navbar color="primary">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>
+      <!-- Wash machine <strong>App!</strong> -->
+      Historial de servicios
+    </ion-title>
+    <!-- <ion-buttons end> -->
+    <!-- <button ion-button tappable (click)="presentNotifications($event)">
+        <ion-icon name="notifications"></ion-icon>
+      </button>
+       -->
+    <!-- <button ion-button tappable (click)="createRent()">
+        <ion-icon name="add"></ion-icon>
+      </button>
+    </ion-buttons> -->
   </ion-navbar>
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <ion-list>
+    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+      <ion-icon [name]="item.icon" item-start></ion-icon>
+      {{item.title}}
+      <br>
+      Valor a pagar: ${{item.price}}
+      <br>
+      Estado: Confirmado
+      <div class="item-note" item-end>
+        {{item.note}}
+      </div>
+    </button>
+  </ion-list>
+  <div *ngIf="selectedItem" padding>
+    You navigated here from <b>{{selectedItem.title}}</b>
+  </div>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
+  <ion-fab bottom right>
+    <button ion-fab (click)='createRent()'>
+        <ion-icon name="add"></ion-icon>
+      </button>
+  </ion-fab>
 
-  <button ion-button secondary menuToggle>Toggle Menu</button>
 </ion-content>
